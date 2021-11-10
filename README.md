@@ -34,7 +34,7 @@ To start coding, please use the following steps as a reference. This is to ensur
 
 1. In terminal window, create a new branch:
 ```bash
-git checkout master # go to master
+git checkout main # go to main
 git pull # pull latest changes from the origin server
 git checkout -b your-feature-branch # checkout to your new branch
 ```
@@ -46,4 +46,4 @@ git push origin your-feature-branch
 git push origin HEAD
 ```
 4. Fill merge request 
-5. Merge your code to `master` ✌
+5. Merge your code to `main` ✌
