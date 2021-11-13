@@ -8,6 +8,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:react/jsx-runtime'
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -21,5 +22,6 @@ module.exports = {
   rules: {
     quotes: ['warn', 'single'],
     semi: ['warn', 'always'],
+    '@typescript-eslint/explicit-module-boundary-types': 'off'
   },
 };

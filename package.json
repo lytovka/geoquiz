@@ -10,8 +10,10 @@
     "format": "prettier --write \"./**/*.{html,md,js,json,jsx,ts,tsx,yml}\""
   },
   "dependencies": {
+    "history": "^5.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
     "typescript": "^4.4.4",
     "web-vitals": "^1.1.2"
