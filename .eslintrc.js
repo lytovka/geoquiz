@@ -22,6 +22,11 @@ module.exports = {
   rules: {
     quotes: ['warn', 'single'],
     semi: ['warn', 'always'],
-    '@typescript-eslint/explicit-module-boundary-types': 'off'
+    '@typescript-eslint/member-delimiter-style': 'warn',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/array-type': [
+      'warn',
+      { default: 'generic', readonly: 'generic' },
+    ],
   },
 };
