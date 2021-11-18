@@ -1,0 +1,1 @@
+export { GenericPageLayout } from './GenericPageLayout';
