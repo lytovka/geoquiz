@@ -1,15 +1,25 @@
-import { CardActionArea, CardContent, Typography } from '@mui/material';
-import { CustomizedCard } from './styled';
+import { CardActionArea, CardContent } from '@mui/material';
+import {
+  CustomizedCard,
+  CustomizedCardMedia,
+  CustomizedTypography,
+} from './styled';
 import { ICountryCardProps } from './types';
 
+/**
+ * Country preview card (Wiki page).
+ * @param {string} countryName - name of the country
+ * @returns {JSX.Element}
+ */
 export const CountryCard = ({ countryName, ...rest }: ICountryCardProps) => {
   return (
     <CustomizedCard {...rest}>
       <CardActionArea>
+        <CustomizedCardMedia src={'/rus.svg'} image="/rus.svg" />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <CustomizedTypography gutterBottom variant="h5">
             {countryName}
-          </Typography>
+          </CustomizedTypography>
         </CardContent>
       </CardActionArea>
     </CustomizedCard>
