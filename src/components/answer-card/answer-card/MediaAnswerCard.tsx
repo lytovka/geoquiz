@@ -10,7 +10,7 @@ import {
 import React, { Fragment } from "react";
 import {IAnswerCardProps} from './types';
 
-export const AnswerCard = ({
+export const MediaAnswerCard = ({
   question,
   answer1,
   answer2,

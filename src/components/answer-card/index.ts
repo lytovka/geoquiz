@@ -1,1 +1,1 @@
-export { AnswerCard } from './answer-card/AnswerCard';
+export { AnswerCard, MediaAnswerCard } from './answer-card';
