@@ -6,6 +6,10 @@ import {
 } from './styled';
 import { ICountryCardProps } from './types';
 
+import { Link } from 'react-router-dom';
+import { RUSSIA_ROUTE } from 'constants/routes';
+
+
 /**
  * Country preview card (Wiki page).
  * @param {string} countryName - name of the country
@@ -13,15 +17,17 @@ import { ICountryCardProps } from './types';
  */
 export const CountryCard = ({ countryName, ...rest }: ICountryCardProps) => {
   return (
-    <CustomizedCard {...rest}>
-      <CardActionArea>
-        <CustomizedCardMedia src={'/rus.svg'} image="/rus.svg" />
-        <CardContent>
-          <CustomizedTypography gutterBottom variant="h5">
-            {countryName}
-          </CustomizedTypography>
-        </CardContent>
-      </CardActionArea>
-    </CustomizedCard>
+    <Link to={RUSSIA_ROUTE}>
+      <CustomizedCard {...rest}>
+        <CardActionArea>
+          <CustomizedCardMedia src={'/rus.svg'} image="/rus.svg" />
+          <CardContent>
+            <CustomizedTypography gutterBottom variant="h5">
+              {countryName}
+            </CustomizedTypography>
+          </CardContent>
+        </CardActionArea>
+      </CustomizedCard>
+    </Link>
   );
 };
