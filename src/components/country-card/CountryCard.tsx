@@ -8,17 +8,21 @@ import { ICountryCardProps } from './types';
 
 /**
  * Country preview card (Wiki page).
- * @param {string} countryName - name of the country
+ * @param {ICountryLookup} country - name of the country
  * @returns {JSX.Element}
  */
-export const CountryCard = ({ countryName, ...rest }: ICountryCardProps) => {
+export const CountryCard = ({ country, ...rest }: ICountryCardProps) => {
   return (
     <CustomizedCard {...rest}>
       <CardActionArea>
-        <CustomizedCardMedia src={'/rus.svg'} image="/rus.svg" />
+        <CustomizedCardMedia
+          // src={country.flag}
+          // image={country.flag}
+          dangerouslySetInnerHTML={{ __html: country.flag }}
+        />
         <CardContent>
           <CustomizedTypography gutterBottom variant="h5">
-            {countryName}
+            {country.data.name}
           </CustomizedTypography>
         </CardContent>
       </CardActionArea>

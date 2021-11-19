@@ -53,3 +53,11 @@ export interface ICountry {
   description: string;
   wikiLink: string;
 }
+
+export interface ICountryLookup {
+  country_key: string;
+  data: {
+    name: ICountry['name'];
+  };
+  flag: string;
+}

@@ -10,7 +10,12 @@ export const CustomizedCard = styled(Card)`
 export const CustomizedCardMedia = styled(CardMedia)`
   background-size: contain;
   height: 8rem;
+  width: 100%;
   margin: 1rem 1rem 0 1rem;
+
+  & > svg {
+    width: 70px;
+  }
 `;
 
 export const CustomizedTypography = styled(Typography)`
