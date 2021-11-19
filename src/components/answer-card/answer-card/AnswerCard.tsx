@@ -20,6 +20,7 @@ export const AnswerCard = ({ question, answer1, answer2, answer3, answer4, corre
         {question}
       </Typography>
       <Grid container spacing={0}>
+        <Grid>
         <Card sx={{ maxWidth: 345 }}>
           <CardActionArea>
             <CardContent>
@@ -44,6 +45,8 @@ export const AnswerCard = ({ question, answer1, answer2, answer3, answer4, corre
       </CardContent>
     </CardActionArea>
   </Card>
+  </Grid>
+  <Grid>
   <Card sx={{ maxWidth: 345 }}>
     <CardActionArea>
       <CardContent>
@@ -68,6 +71,7 @@ export const AnswerCard = ({ question, answer1, answer2, answer3, answer4, corre
       </CardContent>
     </CardActionArea>
   </Card>
+  </Grid>
   </Grid>
   </Fragment>
   );
