@@ -16,63 +16,55 @@ export const AnswerCard = ({ question, answer1, answer2, answer3, answer4, corre
   //need to implement a detection system for correct answers, currently just says 'y' or 'n'
   return (
     <Fragment>
-      <Typography>
+      <Card sx={{ maxWidth: 235, bgcolor: "lightgray", padding: 1, fontFamily:"helvetica", fontWeight:"bold", textAlign:"center" , fontSize:"20px"}}>
         {question}
-      </Typography>
-      <Grid container spacing={0}>
-        <Grid>
-        <Card sx={{ maxWidth: 345 }}>
-          <CardActionArea>
-            <CardContent>
-              <Typography>
-                {answer1}
-              </Typography>
-              <Collapse>
-                <CardContent>{correct[0]}</CardContent>
-              </Collapse>
-            </CardContent>
-          </CardActionArea>
-        </Card>
-    <Card sx={{ maxWidth: 345 }}>
-    <CardActionArea>
-      <CardContent>
-        <Typography>
-          {answer2}
-        </Typography>
-        <Collapse>
-          <CardContent>{correct[1]}</CardContent>
-        </Collapse>
-      </CardContent>
-    </CardActionArea>
-  </Card>
-  </Grid>
-  <Grid>
-  <Card sx={{ maxWidth: 345 }}>
-    <CardActionArea>
-      <CardContent>
-        <Typography>
-          {answer3}
-        </Typography>
-        <Collapse>
-          <CardContent>{correct[2]}</CardContent>
-        </Collapse>
-      </CardContent>
-    </CardActionArea>
-  </Card>
-  <Card sx={{ maxWidth: 345 }}>
-    <CardActionArea>
-      <CardContent>
-        <Typography>
-          {answer4}
-        </Typography>
-        <Collapse>
-          <CardContent>{correct[3]}</CardContent>
-        </Collapse>
-      </CardContent>
-    </CardActionArea>
-  </Card>
-  </Grid>
-  </Grid>
-  </Fragment>
+        <Grid container spacing={0} gap={1}>
+          <Grid container spacing={0} gap={2} sx={{ margin: 2 }}>
+            <Card sx={{ maxWidth: 345, bgcolor:"orange" }}>
+              <CardActionArea>
+                <CardContent>
+                  <Typography>{answer1}</Typography>
+                  <Collapse>
+                    <CardContent>{correct}</CardContent>
+                  </Collapse>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+            <Card sx={{ maxWidth: 345, bgcolor:"orange" }}>
+              <CardActionArea>
+                <CardContent>
+                  <Typography>{answer2}</Typography>
+                  <Collapse>
+                    <CardContent>{correct}</CardContent>
+                  </Collapse>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
+          <Grid container spacing={0} gap={2} sx={{ ml: 2, mb: 2, mr: 2 }}>
+            <Card sx={{ maxWidth: 345, bgcolor:"orange" }}>
+              <CardActionArea>
+                <CardContent>
+                  <Typography>{answer3}</Typography>
+                  <Collapse>
+                    <CardContent>{correct}</CardContent>
+                  </Collapse>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+            <Card sx={{ maxWidth: 345, bgcolor:"orange" }}>
+              <CardActionArea>
+                <CardContent>
+                  <Typography>{answer4}</Typography>
+                  <Collapse>
+                    <CardContent>{correct}</CardContent>
+                  </Collapse>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
+        </Grid>
+      </Card>
+    </Fragment>
   );
 };
