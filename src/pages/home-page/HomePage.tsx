@@ -4,6 +4,9 @@ import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@emotion/react';
 import { grey, blue } from '@mui/material/colors';
 import { GenericPageLayout } from 'layouts';
+import { Link } from 'react-router-dom';
+import { QUIZ_SETUP_ROUTE, WIKI_ROUTE } from 'constants/routes';
+
 
 const lightBlueButton = createTheme({
   shape: { borderRadius: 28 },
@@ -33,8 +36,13 @@ export const HomePage = () => {
       <ThemeProvider theme={lightBlueButton}>
         <div className="center">
           <h1>Take your geography knowledge to another level.</h1>
-          <Button variant="contained">Take a Quiz</Button>&nbsp;&nbsp;
-          <Button variant="contained">Read the Wiki</Button>
+          <Link to={QUIZ_SETUP_ROUTE}>
+            <Button variant="contained">Take a Quiz</Button>
+          </Link>
+          &nbsp;&nbsp;
+          <Link to={WIKI_ROUTE}>
+            <Button variant="contained">Read the Wiki</Button>
+          </Link>
         </div>
         <img
           src="https://www.countryflags.com/wp-content/uploads/full-package-scaled.jpg"
