@@ -1,4 +1,5 @@
 import { Container } from '@mui/material';
+import { Navbar } from 'components';
 import { ReactChild, ReactFragment, ReactPortal } from 'react';
 
 interface IGenericPageLayoutProps {
@@ -13,6 +14,7 @@ export const GenericPageLayout = ({
 }: IGenericPageLayoutProps) => {
   return (
     <div>
+      <Navbar />
       <Container
         sx={{ paddingTop: '4rem', paddingBottom: '4rem' }}
         maxWidth={maxWidth}
