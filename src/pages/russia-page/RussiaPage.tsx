@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Axios, { AxiosRequestConfig } from 'axios';
+import Axios from 'axios';
 import { GenericPageLayout } from 'layouts';
 
 export const RussiaPage = () => {
@@ -9,7 +9,6 @@ export const RussiaPage = () => {
     useEffect(() => {
         Axios.get('http://localhost:5000/read/Russian Federation').then((response) => {
             setCountryInfo(response.data);
-            console.log(countryInfo)
         });
     }, []);
 
