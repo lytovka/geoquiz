@@ -1,5 +1,6 @@
 import { CardProps } from '@mui/material';
+import { ICountryLookup } from 'interfaces';
 
 export interface ICountryCardProps extends CardProps {
-  countryName: string;
+  country: ICountryLookup;
 }
