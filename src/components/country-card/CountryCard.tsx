@@ -16,7 +16,7 @@ export const CountryCard = ({ country, ...rest }: ICountryCardProps) => {
     <CustomizedCard {...rest}>
       <CardActionArea>
         <CustomizedCardMedia
-          dangerouslySetInnerHTML={{ __html: country.flag }}
+          image={`http://localhost:5000/flags/svg/${country.data.flag}`}
         />
         <CardContent>
           <CustomizedTypography gutterBottom variant="h5">

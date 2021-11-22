@@ -58,6 +58,6 @@ export interface ICountryLookup {
   country_key: string;
   data: {
     name: ICountry['name'];
+    flag: ICountry['flag'];
   };
-  flag: string;
 }
