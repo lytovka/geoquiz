@@ -1,4 +1,4 @@
-import { Card, Typography } from '@mui/material';
+import { Card, CardMedia, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 export const CustomizedCard = styled(Card)`
@@ -7,10 +7,10 @@ export const CustomizedCard = styled(Card)`
   border-radius: 28px;
 `;
 
-export const CustomizedCardMedia = styled('div')`
+export const CustomizedCardMedia = styled(CardMedia)`
   background-size: contain;
   height: 8rem;
-  transform: scale(0.1);
+  margin: 1rem 1rem 0 1rem;
 `;
 
 export const CustomizedTypography = styled(Typography)`
