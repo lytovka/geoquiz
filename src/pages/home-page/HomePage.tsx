@@ -1,60 +1,68 @@
-import './HomePage.css';
-import { Button } from '@mui/material';
-import { createTheme } from '@mui/material/styles';
-import { ThemeProvider } from '@emotion/react';
-import { grey, blue } from '@mui/material/colors';
-import { GenericPageLayout } from 'layouts';
 import { Link } from 'react-router-dom';
-import { QUIZ_SETUP_ROUTE, WIKI_ROUTE } from 'constants/routes';
-
-
-const lightBlueButton = createTheme({
-  shape: { borderRadius: 28 },
-  palette: { primary: { main: '#b3e5fc' }, secondary: blue },
-  typography: {
-    button: { textTransform: 'none', fontWeight: 'bold', fontSize: '125%' },
-  },
-});
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#ffecb3',
-    },
-    secondary: {
-      main: grey[800],
-    },
-  },
-  typography: {
-    button: { textTransform: 'none', fontWeight: 'bold', fontSize: '125%' },
-  },
-});
+import { Box, Button, Grid, Link as MaterialLink } from '@mui/material';
+import { GenericPageLayout } from 'layouts';
+import { KeyboardArrowRight } from '@mui/icons-material';
+import {
+  LEADER_BOARD_ROUTE,
+  QUIZ_SETUP_ROUTE,
+  WIKI_ROUTE,
+} from 'constants/routes';
+import {
+  HomePageContainer,
+  HomePageImage,
+  HomePageHeading,
+  HomePageBottomContainer,
+} from './styled';
 
 export const HomePage = () => {
-  document.body.style.backgroundColor = 'blanchedalmond';
   return (
     <GenericPageLayout>
-      <ThemeProvider theme={lightBlueButton}>
-        <div className="center">
-          <h1>Take your geography knowledge to another level.</h1>
-          <Link to={QUIZ_SETUP_ROUTE}>
-            <Button variant="contained">Take a Quiz</Button>
-          </Link>
-          &nbsp;&nbsp;
-          <Link to={WIKI_ROUTE}>
-            <Button variant="contained">Read the Wiki</Button>
-          </Link>
-        </div>
-        <img
-          src="https://www.countryflags.com/wp-content/uploads/full-package-scaled.jpg"
-          alt="countries"
-          className="img"
-        />
-      </ThemeProvider>
-      <ThemeProvider theme={theme}>
-        <div className="bottomCenter">
-          <Button color="secondary">View the Leaderboards</Button>
-        </div>
-      </ThemeProvider>
+      <HomePageContainer
+        container
+        spacing={6}
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Grid item xs={12} lg={6}>
+          <HomePageHeading variant="h1" fontSize="2.8rem">
+            Take your geography knowledge to another level.
+          </HomePageHeading>
+          <Box display="flex" gap={3} justifyContent="center">
+            <Button
+              href={QUIZ_SETUP_ROUTE}
+              endIcon={<KeyboardArrowRight />}
+              variant="contained"
+              color="secondary"
+            >
+              Take a Quiz
+            </Button>
+            <Button href={WIKI_ROUTE} variant="contained" color="primary">
+              Read the Wiki
+            </Button>
+          </Box>
+        </Grid>
+        <Grid item xs={12} lg={6}>
+          <HomePageImage
+            src="https://www.countryflags.com/wp-content/uploads/full-package-scaled.jpg"
+            alt="countries"
+          />
+        </Grid>
+      </HomePageContainer>
+      <HomePageBottomContainer
+        display="flex"
+        justifyContent="center"
+        className="bottomCenter"
+      >
+        <MaterialLink
+          fontSize="1.8rem"
+          color="common.black"
+          component={Link}
+          to={LEADER_BOARD_ROUTE}
+        >
+          View the Leader boards
+        </MaterialLink>
+      </HomePageBottomContainer>
     </GenericPageLayout>
   );
 };

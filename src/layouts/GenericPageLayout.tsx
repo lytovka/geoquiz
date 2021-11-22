@@ -1,4 +1,4 @@
-import { Container } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import { Navbar } from 'components';
 import { ReactChild, ReactFragment, ReactPortal } from 'react';
 
@@ -13,7 +13,7 @@ export const GenericPageLayout = ({
   maxWidth = 'lg',
 }: IGenericPageLayoutProps) => {
   return (
-    <div>
+    <Box height="100vh" sx={{ backgroundColor: 'blanchedalmond' }}>
       <Navbar />
       <Container
         sx={{ paddingTop: '4rem', paddingBottom: '4rem' }}
@@ -21,6 +21,6 @@ export const GenericPageLayout = ({
       >
         {children}
       </Container>
-    </div>
+    </Box>
   );
 };
