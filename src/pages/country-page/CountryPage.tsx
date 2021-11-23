@@ -1,46 +1,51 @@
-import { AppBar, Dialog, IconButton, Toolbar, Typography } from '@mui/material';
+import { Box, IconButton, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { ICountryPageProps } from './types';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { ICountry } from 'interfaces';
 import { getCountryByKey } from 'api/countries';
+import { useNavigate, useParams } from 'react-router-dom';
+import { GenericPageLayout } from 'layouts';
+import { Loading } from 'components';
+import { WIKI_ROUTE } from 'constants/routes';
 
-export const CountryPage = ({
-  country,
-  open,
-  onClose,
-  ...rest
-}: ICountryPageProps) => {
-  const [res, setCountry] = useState<ICountry | null>(null);
-  console.log(res);
+export const CountryPage = () => {
+  const navigate = useNavigate();
+  const { page } = useParams<'page'>();
+  const [country, setCountry] = useState<ICountry | null>(null);
+  console.log('modal', country);
+
+  const fetchCountryPage = useCallback(async (key: string) => {
+    const res = await getCountryByKey(key);
+    setCountry(res);
+  }, []);
+
   useEffect(() => {
-    if (country?.country_key) {
-      const fetchCountry = async (key: string) => {
-        const r = await getCountryByKey(key);
-        setCountry(r);
-      };
+    if (!page) return;
+    fetchCountryPage(page);
+  }, [page, fetchCountryPage]);
 
-      fetchCountry(country.country_key);
-    }
-  }, [country]);
+  if (!country) {
+    return (
+      <GenericPageLayout>
+        <Loading />
+      </GenericPageLayout>
+    );
+  }
 
   return (
-    <Dialog fullScreen open={open} onClose={onClose} {...rest}>
-      <AppBar sx={{ position: 'relative' }}>
-        <Toolbar>
-          <IconButton
-            edge="start"
-            color="inherit"
-            onClick={onClose}
-            aria-label="close"
-          >
-            <CloseIcon />
-          </IconButton>
-          <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-            {/* {country.name} */}
-          </Typography>
-        </Toolbar>
-      </AppBar>
-    </Dialog>
+    <GenericPageLayout>
+      <Box display="flex" justifyContent="center">
+        <IconButton
+          size="large"
+          aria-label="close"
+          onClick={() => navigate(WIKI_ROUTE)}
+        >
+          <CloseIcon fontSize="inherit" />
+        </IconButton>
+        <Typography sx={{ flex: 1 }} variant="h1" fontSize="2.8rem">
+          {country.name}
+        </Typography>
+      </Box>
+    </GenericPageLayout>
   );
 };

@@ -13,7 +13,7 @@ export const GenericPageLayout = ({
   maxWidth = 'lg',
 }: IGenericPageLayoutProps) => {
   return (
-    <Box height="100vh" sx={{ backgroundColor: 'blanchedalmond' }}>
+    <Box height="100vh">
       <Navbar />
       <Container
         sx={{ paddingTop: '4rem', paddingBottom: '4rem' }}

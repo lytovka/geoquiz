@@ -1,27 +1,26 @@
 import { Grid } from '@mui/material';
 import { getAllCountries } from 'api/countries';
 import { CountryCard, Loading } from 'components';
+import { WIKI_ROUTE } from 'constants/routes';
 import { ICountryLookup } from 'interfaces';
 import { GenericPageLayout } from 'layouts';
-import { CountryPage } from 'pages/country-page';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const WikiPage = () => {
-  const [open, setOpen] = useState<boolean>(false);
-  const [country, _setCountry] = useState<ICountryLookup>();
+  const navigate = useNavigate();
   const [countries, setCountries] = useState<Array<ICountryLookup> | null>(
     null
   );
 
-  useEffect(() => {
-    const fetchCountryList = async () => {
-      const r = await getAllCountries();
-      setCountries(r);
-    };
+  const fetchCountries = useCallback(async () => {
+    const list = await getAllCountries();
+    setCountries(list);
+  }, []);
 
-    fetchCountryList();
-    console.log(countries);
-  }, [country]);
+  useEffect(() => {
+    fetchCountries();
+  }, [fetchCountries]);
 
   if (!countries || !countries.length) {
     return (
@@ -31,20 +30,22 @@ export const WikiPage = () => {
     );
   }
 
+  const handleOnCardClick = (country: ICountryLookup) => {
+    navigate(`${WIKI_ROUTE}/${country.country_key}`);
+  };
+
   return (
     <GenericPageLayout>
       <Grid alignItems="stretch" container direction="row" spacing={6}>
         {countries.map((country) => (
           <Grid key={country.country_key} item lg={4} md={4} sm={6} xs={12}>
-            <CountryCard country={country} onClick={() => setOpen(true)} />
+            <CountryCard
+              country={country}
+              onClick={() => handleOnCardClick(country)}
+            />
           </Grid>
         ))}
       </Grid>
-      <CountryPage
-        country={country}
-        open={open}
-        onClose={() => setOpen(false)}
-      />
     </GenericPageLayout>
   );
 };

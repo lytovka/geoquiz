@@ -61,3 +61,11 @@ export interface ICountryLookup {
     flag: ICountry['flag'];
   };
 }
+
+// API responses
+
+export interface ICountryPageResponse {
+  _id: string;
+  country_key: string;
+  data: ICountry;
+}
