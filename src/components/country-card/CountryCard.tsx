@@ -1,4 +1,5 @@
 import { CardActionArea, CardContent } from '@mui/material';
+import { GEOQUIZ_SVG_PATH } from 'constants/endpoints';
 import {
   CustomizedCard,
   CustomizedCardMedia,
@@ -15,9 +16,7 @@ export const CountryCard = ({ country, ...rest }: ICountryCardProps) => {
   return (
     <CustomizedCard {...rest}>
       <CardActionArea>
-        <CustomizedCardMedia
-          image={`http://localhost:5000/flags/svg/${country.data.flag}`}
-        />
+        <CustomizedCardMedia image={GEOQUIZ_SVG_PATH(country.data.flag)} />
         <CardContent>
           <CustomizedTypography gutterBottom variant="h5">
             {country.data.name}
