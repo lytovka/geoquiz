@@ -1,0 +1,25 @@
+image: node:16.13.0
+
+cache:
+  paths:
+    - node_modules/
+
+stages:
+  - lint
+  - test
+  - build
+
+lint-job:
+  stage: lint
+  script:
+    - eslint --ext .js,.ts,.tsx --max-warnings 0 ./
+
+unit-tests-job:
+  stage: test
+  script:
+    - react-scripts test
+
+build-job:
+  stage: build
+  script:
+    - react-scripts build
