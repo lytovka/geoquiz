@@ -6,5 +6,6 @@ export interface IAnswerCardProps extends CardProps {
     answer2: string;
     answer3: string;
     answer4: string;
-    correct: string;
+    correct: number;
+    score: number;
 }
