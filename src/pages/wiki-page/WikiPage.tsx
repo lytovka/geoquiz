@@ -6,6 +6,7 @@ import { ICountryLookup } from 'interfaces';
 import { GenericPageLayout } from 'layouts';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useRefInFrame } from 'hooks/useRefInFrame';
 
 
 export const WikiPage = () => {
@@ -16,39 +17,12 @@ export const WikiPage = () => {
 
   const [pageNumber, setPageNumber] = useState(1);
   const pageSize = 20;
+
   const loadingRef = useRef(null);
+  const isLoadingRefOnScreen = useRefInFrame(loadingRef);
   const [isFullyLoaded, setIsFullyLoaded] = useState(false);
 
 
-  const callbackFunction = (entries: Array<any>) => {
-    const [entry] = entries;
-    if (entry.isIntersecting) {
-      if (!((pageNumber * pageSize) > 250)) { setPageNumber(prevPageNumber => prevPageNumber + 1); }
-      else { setIsFullyLoaded(true) }
-    }
-  };
-
-  const options = useMemo(() => {
-    return {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.3
-    }
-  }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(callbackFunction, options);
-    const currentTarget = loadingRef.current;
-    if (currentTarget && !isFullyLoaded) {
-      observer.observe(currentTarget);
-    }
-
-    return () => {
-      if (currentTarget) {
-        observer.unobserve(currentTarget);
-      }
-    }
-  });
 
   const fetchCountries = useCallback(async () => {
     const list = await getAllCountries();
@@ -59,6 +33,16 @@ export const WikiPage = () => {
     fetchCountries();
   }, [fetchCountries]);
 
+  //TODO: Change 250 to length of countries to show
+  useEffect(() => {
+    if (isLoadingRefOnScreen) {
+      if ((pageNumber * pageSize) < 250) {
+        console.log("load triggered");
+        setPageNumber(prevPageNumber => prevPageNumber + 1);
+      }
+      else { setIsFullyLoaded(true) }
+    }
+  }, [isLoadingRefOnScreen]);
 
   if (!countries || !countries.length) {
     return (
