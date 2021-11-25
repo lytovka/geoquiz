@@ -33,11 +33,10 @@ export const WikiPage = () => {
     fetchCountries();
   }, [fetchCountries]);
 
-  //TODO: Change 250 to length of countries to show
   useEffect(() => {
+    if (!countries) return;
     if (isLoadingRefOnScreen) {
-      if ((pageNumber * pageSize) < 250) {
-        console.log("load triggered");
+      if ((pageNumber * pageSize) < countries.length) {
         setPageNumber(prevPageNumber => prevPageNumber + 1);
       }
       else { setIsFullyLoaded(true) }
