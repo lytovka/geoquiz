@@ -29,13 +29,22 @@ export const getCountriesByDataCategory = async (dataCategory: string, dataValue
   return response;
 }
 
-export const getDistinctDataCategoryValues = async (dataCategory: string): Promise<Array<string>> => {
+export const getDistinctRegions = async (): Promise<Array<string>> => {
   const endpoint = new URL(
-    `distinct_data_categories/${dataCategory}`,
+    `distinct_data_categories/region`,
     process.env.REACT_APP_GEOQUIZ_BASE_URL
   );
 
   const response = await get<Array<string>>(endpoint.toString());
+  return response;
+};
 
+export const getDistinctSubregions = async (): Promise<Array<string>> => {
+  const endpoint = new URL(
+    `distinct_data_categories/subregion`,
+    process.env.REACT_APP_GEOQUIZ_BASE_URL
+  );
+
+  const response = await get<Array<string>>(endpoint.toString());
   return response;
 };
