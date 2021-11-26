@@ -7,6 +7,7 @@ import {
   Typography,
 } from '@mui/material';
 import { getDistinctSubregions } from 'api/countries';
+import { QuizConfigContext } from 'contexts/QuizConfiguration';
 import {
   ICountry,
   IQuizConfiguration,
@@ -14,7 +15,7 @@ import {
   quizType,
 } from 'interfaces';
 import { GenericPageLayout } from 'layouts';
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useContext, useEffect, useState } from 'react';
 import {
   QuizSetupForm,
   QuizSetupSelectControl,
@@ -22,10 +23,11 @@ import {
 } from './styled';
 
 export const QuizSetupPage = () => {
+  const { setQuizConfiguration } = useContext(QuizConfigContext);
   const [regionOptions, setRegionOptions] = useState<Array<ICountry['region']>>(
     []
   );
-  const [quizConfiguration, setQuizConfiguration] =
+  const [quizConfiguration, _setQuizConfiguration] =
     useState<IQuizConfiguration>({
       region: '',
       type: '',
@@ -55,12 +57,13 @@ export const QuizSetupPage = () => {
       ...quizConfiguration,
       [key]: value,
     };
-    setQuizConfiguration(newQuizConfiguration);
+    _setQuizConfiguration(newQuizConfiguration);
   };
 
   const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(event);
+    setQuizConfiguration(quizConfiguration);
+    // console.log(event);
   };
 
   return (
@@ -110,9 +113,6 @@ export const QuizSetupPage = () => {
               },
             }}
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
             {quizType.map((type, index) => (
               <MenuItem key={index} value={type}>
                 {type}
@@ -135,9 +135,6 @@ export const QuizSetupPage = () => {
               },
             }}
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
             {quizDifficulty.map((type, index) => (
               <MenuItem key={index} value={type}>
                 {type}

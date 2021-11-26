@@ -6,13 +6,16 @@ import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from '@mui/system';
 import { customTheme } from 'theme/theme';
+import { QuizConfigProvider } from 'contexts/QuizConfiguration';
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={customTheme}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <QuizConfigProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </QuizConfigProvider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')

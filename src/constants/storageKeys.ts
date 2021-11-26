@@ -1,0 +1,1 @@
+export const QUIZ_CONFIG_STORAGE_KEY = 'quiz-config';
