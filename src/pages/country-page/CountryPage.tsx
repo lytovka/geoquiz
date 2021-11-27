@@ -1,4 +1,4 @@
-import { Box, IconButton, Typography } from '@mui/material';
+import { Box, Button, IconButton, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useCallback, useEffect, useState } from 'react';
 import { ICountry } from 'interfaces';
@@ -7,6 +7,16 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { GenericPageLayout } from 'layouts';
 import { Loading } from 'components';
 import { WIKI_ROUTE } from 'constants/routes';
+import {
+  CountryPageHeading,
+  CountryPageMainContentContainer,
+  CountryPageMainStats,
+  CountryPageMainSupplimentaryInfoContainer,
+  CountryPageStatsSpan,
+  CountryPageStatsTypography,
+  CustomizedCardMedia,
+} from './styled';
+import { GEOQUIZ_SVG_PATH } from 'constants/endpoints';
 
 export const CountryPage = () => {
   const navigate = useNavigate();
@@ -34,7 +44,7 @@ export const CountryPage = () => {
 
   return (
     <GenericPageLayout>
-      <Box display="flex" justifyContent="center">
+      <Box display="flex" justifyContent="flex-start">
         <IconButton
           size="large"
           aria-label="close"
@@ -42,10 +52,49 @@ export const CountryPage = () => {
         >
           <CloseIcon fontSize="inherit" />
         </IconButton>
-        <Typography sx={{ flex: 1 }} variant="h1" fontSize="2.8rem">
-          {country.name}
-        </Typography>
       </Box>
+      <CountryPageHeading variant="h1">{country.name}</CountryPageHeading>
+      <CountryPageMainSupplimentaryInfoContainer>
+        <CountryPageMainStats>
+          <CountryPageStatsTypography variant="body1">
+            <CountryPageStatsSpan>Region</CountryPageStatsSpan>:{' '}
+            {country.region}
+          </CountryPageStatsTypography>
+          <CountryPageStatsTypography variant="body1">
+            <CountryPageStatsSpan>Capital</CountryPageStatsSpan>:{' '}
+            {country.capital}
+          </CountryPageStatsTypography>
+          <CountryPageStatsTypography variant="body1">
+            <CountryPageStatsSpan>Population</CountryPageStatsSpan>:{' '}
+            {country.population}
+          </CountryPageStatsTypography>
+          <CountryPageStatsTypography variant="body1">
+            <CountryPageStatsSpan>Languages</CountryPageStatsSpan>:{' '}
+            {country.languages.map((language) => language.name).join(', ')}
+          </CountryPageStatsTypography>
+          <CountryPageStatsTypography variant="body1">
+            <CountryPageStatsSpan>Currencies</CountryPageStatsSpan>:{' '}
+            {country.currencies.map((currency) => currency.name).join(', ')}
+          </CountryPageStatsTypography>
+        </CountryPageMainStats>
+        <CustomizedCardMedia image={GEOQUIZ_SVG_PATH(country.flag)} />
+      </CountryPageMainSupplimentaryInfoContainer>
+      <CountryPageMainContentContainer>
+        <Typography variant="body1" fontSize="1.8rem">
+          {country.description}
+        </Typography>
+      </CountryPageMainContentContainer>
+      <Button
+        size="large"
+        variant="contained"
+        target="__blank"
+        rel="noopener"
+        href={country.wikiLink}
+        color="secondary"
+        sx={{ marginTop: '2rem' }}
+      >
+        READ WIKI ARTICLE
+      </Button>
     </GenericPageLayout>
   );
 };

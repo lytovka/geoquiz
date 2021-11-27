@@ -1,70 +1,61 @@
+import { Box, Link } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
 import {
-  Button,
-  AppBar,
-  Toolbar,
-  Typography,
-  Box,
-  IconButton,
-} from '@mui/material';
-import { createTheme } from '@mui/material/styles';
-import { ThemeProvider } from '@emotion/react';
-import { grey } from '@mui/material/colors';
-import { Link } from 'react-router-dom';
-import { HOMEPAGE_ROUTE, QUIZ_SETUP_ROUTE, WIKI_ROUTE } from 'constants/routes';
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#ffecb3',
-    },
-    secondary: {
-      main: grey[800],
-    },
-  },
-  typography: {
-    button: { textTransform: 'none', fontWeight: 'bold', fontSize: '125%' },
-  },
-});
+  HOMEPAGE_ROUTE,
+  LOGIN_ROUTE,
+  QUIZ_SETUP_ROUTE,
+  WIKI_ROUTE,
+} from 'constants/routes';
+import { CustomAppBar, CustomToolbar } from './styled';
 
 export const Navbar = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" color="secondary">
-          <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="primary"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-            ></IconButton>
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{
-                flexGrow: 1,
-                display: 'flex',
-                justifyContent: 'flex-start',
-                alignItems: 'flex-start',
-              }}
+    <Box>
+      <CustomAppBar position="static">
+        <CustomToolbar sx={{ justifyContent: 'space-between' }}>
+          <Box display="flex">
+            <Link
+              fontSize="1.8rem"
+              fontWeight="bold"
+              color="secondary"
+              component={RouterLink}
+              to={HOMEPAGE_ROUTE}
+              underline="hover"
             >
-              LOGO
-            </Typography>
-            <Link to={QUIZ_SETUP_ROUTE}>
-              <Button color="primary">Quiz</Button>
+              GEOQUIZ
             </Link>
-            &nbsp;&nbsp;
-            <Link to={WIKI_ROUTE}>
-              <Button color="primary">Wiki</Button>
+          </Box>
+          <Box display="flex" columnGap={4}>
+            <Link
+              fontSize="1.5rem"
+              color="secondary"
+              component={RouterLink}
+              to={QUIZ_SETUP_ROUTE}
+              underline="hover"
+            >
+              Quiz
             </Link>
-            &nbsp;&nbsp;
-            <Link to={HOMEPAGE_ROUTE}>
-              <Button color="primary">Login</Button>
+            <Link
+              fontSize="1.5rem"
+              color="secondary"
+              component={RouterLink}
+              to={WIKI_ROUTE}
+              underline="hover"
+            >
+              Wiki
             </Link>
-          </Toolbar>
-        </AppBar>
-      </Box>
-    </ThemeProvider>
+            <Link
+              fontSize="1.5rem"
+              color="secondary"
+              component={RouterLink}
+              to={LOGIN_ROUTE}
+              underline="hover"
+            >
+              Login
+            </Link>
+          </Box>
+        </CustomToolbar>
+      </CustomAppBar>
+    </Box>
   );
 };
