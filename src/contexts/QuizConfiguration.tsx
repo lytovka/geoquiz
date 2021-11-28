@@ -26,16 +26,15 @@ export const QuizConfigProvider = ({ children }: IQuizConfigContextProps) => {
 
   const getQuizConfiguration = useCallback(() => {
     const currentConfig = getQuizConfig();
-    _setQuizConfig(currentConfig);
     return currentConfig;
   }, []);
 
   useEffect(() => {
-    getQuizConfiguration();
+    const res = getQuizConfiguration();
+    _setQuizConfig(res);
   }, [getQuizConfiguration]);
 
   const setQuizConfiguration = async (body: IQuizConfiguration) => {
-    console.log('quiz config', body);
     setQuizConfig(body);
   };
 
