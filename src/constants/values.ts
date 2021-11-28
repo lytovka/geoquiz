@@ -1,0 +1,1 @@
+export const TIMER_MAX_COUNT = 60;
