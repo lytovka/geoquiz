@@ -3,7 +3,7 @@ import { Navbar } from 'components';
 import { ReactChild, ReactFragment, ReactPortal } from 'react';
 
 interface IGenericPageLayoutProps {
-  children: boolean | ReactChild | ReactFragment | ReactPortal;
+  children: boolean | ReactChild | ReactFragment | ReactPortal | null;
   fixedBar?: boolean;
   maxWidth?: 'md' | 'lg';
 }
