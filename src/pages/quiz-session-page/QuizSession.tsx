@@ -102,7 +102,7 @@ export const QuizSessionPage = () => {
 
   // stopwatch implementation
   useEffect(() => {
-    if (state.time <= 50 || state.isFinished) {
+    if (state.time <= 0 || state.isFinished) {
       dispatch({ type: EQuizActionType.STOP_QUIZ, payload: state });
       return;
     } else {

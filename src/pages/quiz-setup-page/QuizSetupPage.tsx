@@ -7,6 +7,7 @@ import {
   Typography,
 } from '@mui/material';
 import { getDistinctSubregions } from 'api/countries';
+import { QUIZ_SESSION_ROUTE } from 'constants/routes';
 import { QuizConfigContext } from 'contexts/QuizConfiguration';
 import {
   ICountry,
@@ -16,6 +17,7 @@ import {
 } from 'interfaces';
 import { GenericPageLayout } from 'layouts';
 import { FormEvent, useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import {
   QuizSetupForm,
   QuizSetupSelectControl,
@@ -23,6 +25,7 @@ import {
 } from './styled';
 
 export const QuizSetupPage = () => {
+  const navigate = useNavigate();
   const { setQuizConfiguration } = useContext(QuizConfigContext);
   const [regionOptions, setRegionOptions] = useState<Array<ICountry['region']>>(
     []
@@ -63,7 +66,7 @@ export const QuizSetupPage = () => {
   const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setQuizConfiguration(quizConfiguration);
-    // console.log(event);
+    navigate(QUIZ_SESSION_ROUTE);
   };
 
   return (
