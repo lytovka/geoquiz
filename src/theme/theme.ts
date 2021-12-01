@@ -30,16 +30,6 @@ export const customTheme = createTheme({
           borderRadius: '100px',
         },
       },
-    },
-    MuiInputBase: {
-      styleOverrides: {
-        formControl: {
-          borderRadius: '100px',
-        },
-        root: {
-          borderRadius: '100px',
-        },
-      },
-    },
+    }
   },
 });
