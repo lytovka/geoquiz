@@ -1,5 +1,6 @@
 import { get, post } from './http';
-import { IUserScore, IQuizConfiguration } from 'interfaces';
+import { IUserScore, IUserScoreNoConfig, IQuizConfiguration } from 'interfaces';
+
 
 
 export const postUserScore = async (userData: IUserScore): Promise<number> => {
@@ -19,11 +20,11 @@ export const postUserScore = async (userData: IUserScore): Promise<number> => {
 
 export const getScoresByQuizConfig = async (
     configuration: IQuizConfiguration
-): Promise<Array<IUserScore>> => {
+): Promise<Array<IUserScoreNoConfig>> => {
     const endpoint = new URL(
         `scores_by_quiz_type/${configuration.levelOfDifficulty}/${configuration.region}/${configuration.type}`,
         process.env.REACT_APP_GEOQUIZ_BASE_URL
     );
-    const response = await get<Array<IUserScore>>(endpoint.toString());
+    const response = await get<Array<IUserScoreNoConfig>>(endpoint.toString());
     return response;
 };

@@ -1,5 +1,5 @@
 import { get } from './http';
-import { ICountry, ICountryLookup, ICountryPageResponse, IUserScore } from 'interfaces';
+import { ICountry, ICountryLookup, ICountryPageResponse } from 'interfaces';
 
 export const getAllCountries = async () => {
   const endpoint = new URL('countries', process.env.REACT_APP_GEOQUIZ_BASE_URL);
