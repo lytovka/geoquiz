@@ -8,15 +8,15 @@ import {
 import React, { Fragment } from "react";
 import { IAnswerCardProps } from './types'
 
-export const AnswerCard = ({ question, answer1, answer2, answer3, answer4, correct, score}: IAnswerCardProps): [JSX.Element, number] => {
+export const AnswerCard = ({ question, answer1, answer2, answer3, answer4, correct, score}: IAnswerCardProps): JSX.Element => {
   const answers = [false, false, false, false];
   answers[correct-1] = true;
   function response(x: boolean, y:number): number {
     if (x) {return y++}
     else return y
   }
-  //should now write the value properly
-  return [
+  //can't return score value
+  return (
     <Fragment>
       <Card sx={{ maxWidth: 235, bgcolor: "lightgray", padding: 1, fontFamily:"helvetica", fontWeight:"bold", textAlign:"center" , fontSize:"20px"}}>
         {question}
@@ -64,5 +64,5 @@ export const AnswerCard = ({ question, answer1, answer2, answer3, answer4, corre
         </Grid>
       </Card>
     </Fragment>
-  , score];
+  );
 };
