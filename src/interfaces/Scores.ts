@@ -1,4 +1,4 @@
-import { IQuizConfiguration } from "./QuizSetup"
+import { IQuizConfiguration } from './QuizSetup';
 
 export interface IUserScore {
     username: string;
