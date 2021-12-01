@@ -43,3 +43,30 @@ export async function get<TResponse>(
 
   return await http<TResponse>(url, init);
 }
+
+/**
+ * HTTP Method - POST
+ *
+ * @param {string} url
+ * @param {TRequest} body
+ * @param {[RequestInit]} config
+ */
+export async function post<TRequest, TResponse>(
+  url: string,
+  body: TRequest,
+  config?: RequestInit
+): Promise<TResponse> {
+  const { headers, ...rest } = config || {};
+
+  const init: RequestInit = {
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json',
+      ...headers,
+    },
+    method: 'post',
+    ...rest
+  };
+
+  return await http<TResponse>(url, init);
+}
