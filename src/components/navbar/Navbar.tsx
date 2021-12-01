@@ -7,6 +7,7 @@ import {
   WIKI_ROUTE,
 } from 'constants/routes';
 import { CustomAppBar, CustomToolbar } from './styled';
+import { LoginWrapper } from 'components/login/LoginWrapper';
 
 export const Navbar = () => {
   return (
@@ -44,15 +45,7 @@ export const Navbar = () => {
             >
               Wiki
             </Link>
-            <Link
-              fontSize="1.5rem"
-              color="secondary"
-              component={RouterLink}
-              to={LOGIN_ROUTE}
-              underline="hover"
-            >
-              Login
-            </Link>
+            <LoginWrapper />
           </Box>
         </CustomToolbar>
       </CustomAppBar>
