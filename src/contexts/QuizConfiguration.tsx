@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { getQuizConfig, setQuizConfig } from 'api/quiz';
+import { getQuizConfigService, setQuizConfigService } from 'api/quiz';
 import { IQuizConfiguration } from 'interfaces';
 import { createContext, useCallback, useEffect, useState } from 'react';
 
@@ -20,23 +20,20 @@ export const QuizConfigContext = createContext<IQuizConfigContext>({
 });
 
 export const QuizConfigProvider = ({ children }: IQuizConfigContextProps) => {
-  const [quizConfig, _setQuizConfig] = useState<IQuizConfiguration | null>(
-    null
-  );
+  const [quizConfig, setQuizConfig] = useState<IQuizConfiguration | null>(null);
 
   const getQuizConfiguration = useCallback(() => {
-    const currentConfig = getQuizConfig();
-    _setQuizConfig(currentConfig);
+    const currentConfig = getQuizConfigService();
     return currentConfig;
   }, []);
 
   useEffect(() => {
-    getQuizConfiguration();
+    const res = getQuizConfiguration();
+    setQuizConfig(res);
   }, [getQuizConfiguration]);
 
-  const setQuizConfiguration = async (body: IQuizConfiguration) => {
-    console.log('quiz config', body);
-    setQuizConfig(body);
+  const setQuizConfiguration = (body: IQuizConfiguration) => {
+    setQuizConfigService(body);
   };
 
   return (
