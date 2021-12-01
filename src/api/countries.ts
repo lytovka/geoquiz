@@ -1,4 +1,4 @@
-import { get, post } from './http';
+import { get } from './http';
 import { ICountry, ICountryLookup, ICountryPageResponse, IUserScore } from 'interfaces';
 
 export const getAllCountries = async () => {
@@ -55,17 +55,3 @@ export const getDistinctSubregions = async (): Promise<Array<string>> => {
 };
 
 
-export const postUserScore = async (userData: IUserScore): Promise<number> => {
-  const endpoint = new URL(
-    '/write/user_score/',
-    process.env.REACT_APP_GEOQUIZ_BASE_URL
-  );
-  const config: RequestInit = {
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    }
-  };
-  const responseCode = await post<IUserScore, number>(endpoint.toString(), userData, config);
-  return responseCode;
-};
