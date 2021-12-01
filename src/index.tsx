@@ -10,14 +10,14 @@ import { QuizConfigProvider } from 'contexts/QuizConfiguration';
 import { DOMAIN, CLIENT_ID } from 'constants/authentication';
 import { Auth0Provider } from '@auth0/auth0-react';
 
-
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={customTheme}>
       <Auth0Provider
         domain={DOMAIN}
         clientId={CLIENT_ID}
-        redirectUri={window.location.origin}>
+        redirectUri={window.location.origin}
+      >
         <QuizConfigProvider>
           <BrowserRouter>
             <App />
