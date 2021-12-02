@@ -60,7 +60,7 @@ export const HomePage = () => {
           component={Link}
           to={LEADER_BOARD_ROUTE}
         >
-          View the Leader boards
+          View the Leaderboards
         </MaterialLink>
       </HomePageBottomContainer>
     </GenericPageLayout>
