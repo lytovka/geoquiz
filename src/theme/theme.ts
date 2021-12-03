@@ -30,6 +30,6 @@ export const customTheme = createTheme({
           borderRadius: '100px',
         },
       },
-    }
+    },
   },
 });
