@@ -6,7 +6,7 @@ import { QuizConfigContext } from 'contexts/QuizConfiguration';
 import { ICountry, IUserScore } from 'interfaces';
 import { GenericPageLayout } from 'layouts';
 import { Fragment, useContext, useEffect, useReducer, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { EQuizActionType, initialState, reducer } from './quizReducer';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 import { GEOQUIZ_SVG_PATH } from 'constants/endpoints';
@@ -22,15 +22,13 @@ interface IActiveCard {
   options: Array<string>;
 }
 
-
 export const QuizSessionPage = () => {
+  const navigate = useNavigate();
   const { isAuthenticated, user } = useAuth0();
   const { getQuizConfiguration } = useContext(QuizConfigContext);
   const [state, dispatch] = useReducer(reducer, initialState);
   const [currentCard, setCurrentCard] = useState<IActiveCard>();
   const currentConfig = getQuizConfiguration();
-
-  const [sendData, setSendData] = useState(false);
 
   const fetchCountriesBySubregion = async (subregion: string) => {
     const result = await getCountriesByDataCategory('subregion', subregion);
@@ -42,7 +40,6 @@ export const QuizSessionPage = () => {
     return result;
   };
 
-
   const verifyAnswer = (selectedOption: string) => {
     if (selectedOption === currentCard?.country.name) {
       dispatch({ type: EQuizActionType.CORRECT_ANSWER, payload: state });
@@ -51,23 +48,22 @@ export const QuizSessionPage = () => {
     }
   };
 
-  //post data to the server when the state is triggered
-  useEffect(() => {
-    //prevent trigerring on mount
-    if (sendData) {
-      console.log('Sending data to the server');
-      //Score out of a thousand. Punish Incorrect answers more heavily than little time remaining
-      if (user && user.email && currentConfig) {
-        const userScore: IUserScore = {
-          username: user.email,
-          quizConfig: currentConfig,
-          quizScore: state.finalScore
-        };
-        const res = postUserScore(userScore);
-        console.log('data sent', res);
+  //post user's score to the server
+  const handleSubmitUserSore = async () => {
+    //Score out of a thousand. Punish Incorrect answers more heavily than little time remaining
+    if (user && user.email && currentConfig) {
+      const userScore: IUserScore = {
+        username: user.email,
+        quizConfig: currentConfig,
+        quizScore: state.finalScore,
+      };
+      const res = await postUserScore(userScore);
+      console.log('data sent', res);
+      if (res) {
+        navigate(HOMEPAGE_ROUTE);
       }
     }
-  }, [sendData]);
+  };
 
   // fetch all countries at the beginning of a quiz session (start quiz)
   useEffect(() => {
@@ -89,7 +85,6 @@ export const QuizSessionPage = () => {
         });
     }
   }, []);
-
 
   // fetch full country information and set random options
   useEffect(() => {
@@ -159,12 +154,22 @@ export const QuizSessionPage = () => {
               Your Score is: {state.finalScore.toFixed(2)}
             </Typography>
             <Box display="flex" gap={3} justifyContent="center">
-              <Button variant="contained" href={HOMEPAGE_ROUTE} color="secondary">
+              <Button
+                variant="contained"
+                href={HOMEPAGE_ROUTE}
+                color="secondary"
+              >
                 HOMEPAGE
               </Button>
-              {
-                !sendData && isAuthenticated && <Button onClick={() => { setSendData(true); }} variant="contained" color="primary">Record Quiz</Button>
-              }
+              {isAuthenticated && (
+                <Button
+                  onClick={handleSubmitUserSore}
+                  variant="contained"
+                  color="primary"
+                >
+                  Record Quiz
+                </Button>
+              )}
             </Box>
           </Box>
         </Modal>
