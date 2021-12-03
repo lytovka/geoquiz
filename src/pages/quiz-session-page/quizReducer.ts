@@ -15,6 +15,7 @@ interface IQuizGameState {
   options: Array<string>;
   remainingCards: Array<ICountryLookup>;
   score: number;
+  finalScore: number;
   index: number;
   isFinished: boolean;
   time: number;
@@ -31,6 +32,7 @@ export const initialState: IQuizGameState = {
   options: [],
   remainingCards: [],
   score: 0,
+  finalScore: 0,
   isFinished: false,
   index: 1,
   time: TIMER_MAX_COUNT,
@@ -46,7 +48,8 @@ export const reducer = (
     }
 
     case EQuizActionType.STOP_QUIZ: {
-      return { ...currentState, isFinished: true, time: 0 };
+      const newFinalScore = (1000 * Math.pow(currentState.score / currentState.allCards.length, 3) * (currentState.time / TIMER_MAX_COUNT));
+      return { ...currentState, finalScore: newFinalScore, isFinished: true };
     }
     case EQuizActionType.CORRECT_ANSWER: {
       const newRemainingCards = [...action.payload.remainingCards];
