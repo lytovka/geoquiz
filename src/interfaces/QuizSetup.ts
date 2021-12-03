@@ -7,7 +7,7 @@ export type QuizDifficulty = typeof quizDifficulty[number];
 export type QuizType = typeof quizType[number];
 
 export interface IQuizConfiguration {
-  levelOfDifficulty?: QuizDifficulty;
-  region?: ICountry['region'];
-  type?: QuizType;
+  levelOfDifficulty: QuizDifficulty;
+  region: ICountry['region'];
+  type: QuizType;
 }

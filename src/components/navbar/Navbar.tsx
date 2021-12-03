@@ -1,18 +1,24 @@
-import { Box, Link } from '@mui/material';
+import { Box, Button, Link } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
-import {
-  HOMEPAGE_ROUTE,
-  LOGIN_ROUTE,
-  QUIZ_SETUP_ROUTE,
-  WIKI_ROUTE,
-} from 'constants/routes';
+import { useAuth0 } from '@auth0/auth0-react';
+import { HOMEPAGE_ROUTE, QUIZ_SETUP_ROUTE, WIKI_ROUTE } from 'constants/routes';
 import { CustomAppBar, CustomToolbar } from './styled';
+import { useEffect, useState } from 'react';
 
 export const Navbar = () => {
+  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
+  const [renderTrigger, setRenderTrigger] = useState(false);
+
+  useEffect(() => {
+    setRenderTrigger(isAuthenticated);
+  }, [isAuthenticated]);
+
   return (
     <Box>
       <CustomAppBar position="static">
-        <CustomToolbar sx={{ justifyContent: 'space-between' }}>
+        <CustomToolbar
+          sx={{ justifyContent: 'space-between', alignContent: 'center' }}
+        >
           <Box display="flex">
             <Link
               fontSize="1.8rem"
@@ -44,15 +50,19 @@ export const Navbar = () => {
             >
               Wiki
             </Link>
-            <Link
-              fontSize="1.5rem"
+            <Button
+              variant="contained"
+              onClick={() => {
+                if (!isAuthenticated) {
+                  loginWithRedirect();
+                } else {
+                  logout();
+                }
+              }}
               color="secondary"
-              component={RouterLink}
-              to={LOGIN_ROUTE}
-              underline="hover"
             >
-              Login
-            </Link>
+              {isAuthenticated ? 'Log Out' : 'Log In'}
+            </Button>
           </Box>
         </CustomToolbar>
       </CustomAppBar>
