@@ -16,4 +16,7 @@ export const CustomizedCardMedia = styled(CardMedia)`
 export const CustomizedTypography = styled(Typography)`
   color: #6e7272;
   font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
