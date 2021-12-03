@@ -1,3 +1,6 @@
+/**
+ * @deprecated
+ */
 import {
   CardActionArea,
   Typography,
@@ -15,7 +18,6 @@ export const AnswerCard = ({ question, answer1, answer2, answer3, answer4, corre
     if (x) {return y++}
     else return y
   }
-  //DEPRICATED
   return (
     <Fragment>
       <Card sx={{ maxWidth: 235, bgcolor: "lightgray", padding: 1, fontFamily:"helvetica", fontWeight:"bold", textAlign:"center" , fontSize:"20px"}}>

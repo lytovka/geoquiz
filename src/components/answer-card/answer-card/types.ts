@@ -1,5 +1,7 @@
+/**
+ * @deprecated
+ */
 import {CardProps} from '@mui/material';
-//DEPRICATED
 export interface IAnswerCardProps extends CardProps {
     question: string;
     answer1: string;

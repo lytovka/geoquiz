@@ -1,3 +1,6 @@
+/**
+ * @deprecated
+ */
 import {
   CardActionArea,
   Collapse,
@@ -9,7 +12,6 @@ import {
 } from "@mui/material";
 import React, { Fragment } from "react";
 import {IAnswerCardProps} from './types';
-//DEPRICATED
 export const MediaAnswerCard = ({
   question,
   answer1,
