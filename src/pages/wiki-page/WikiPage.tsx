@@ -63,6 +63,10 @@ export const WikiPage = () => {
     }
   }, [isLoadingRefOnScreen]);
 
+  useEffect(() => {
+    setPageNumber(1);
+  }, [debouncedSearchTerm]);
+
   const handleOnCardClick = (country: ICountryLookup) => {
     navigate(`${WIKI_ROUTE}/${country.country_key}`);
   };
