@@ -4,7 +4,6 @@ Final Project for CPS731.
 An interactive quiz platform in geography.
 </div>
 
-
 ## Setup ⚙
 
 1. Clone this project using the `git clone` command
@@ -18,6 +17,8 @@ npm i
 npm start
 ```
 4. Open http://localhost:3000 to view in the browser.
+
+Make sure that you have a local instance of [geoquiz-service](https://github.com/lytovka/geoquiz-server) running.
 
 ## Build 🚀
 
