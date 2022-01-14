@@ -18,7 +18,7 @@ npm start
 ```
 4. Open http://localhost:3000 to view in the browser.
 
-Make sure that you have a local instance of [geoquiz-service](https://github.com/lytovka/geoquiz-server) running.
+Make sure that you have a local instance of [geoquiz-server](https://github.com/lytovka/geoquiz-server) running.
 
 ## Build 🚀
 
