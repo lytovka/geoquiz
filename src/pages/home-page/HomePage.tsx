@@ -12,6 +12,7 @@ import {
   HomePageImage,
   HomePageHeading,
   HomePageBottomContainer,
+  HomePageImageContainer,
 } from './styled';
 
 export const HomePage = () => {
@@ -27,7 +28,7 @@ export const HomePage = () => {
         alignItems="center"
       >
         <Grid item xs={12} lg={6}>
-          <HomePageHeading variant="h1" fontSize="2.8rem">
+          <HomePageHeading variant="h1" fontSize="2.8rem" textAlign={'center'}>
             Take your geography knowledge to another level.
           </HomePageHeading>
           <Box display="flex" gap={3} justifyContent="center">
@@ -52,12 +53,12 @@ export const HomePage = () => {
             </Button>
           </Box>
         </Grid>
-        <Grid item xs={12} lg={6}>
+        <HomePageImageContainer item xs={12} lg={6}>
           <HomePageImage
             src="https://www.countryflags.com/wp-content/uploads/full-package-scaled.jpg"
             alt="countries"
           />
-        </Grid>
+        </HomePageImageContainer>
       </HomePageContainer>
       <HomePageBottomContainer>
         <MaterialLink

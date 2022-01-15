@@ -18,7 +18,7 @@ export const CountryCard = ({ country, ...rest }: ICountryCardProps) => {
       <CardActionArea>
         <CustomizedCardMedia image={GEOQUIZ_SVG_PATH(country.data.flag)} />
         <CardContent>
-          <CustomizedTypography gutterBottom variant="h5">
+          <CustomizedTypography gutterBottom variant="h5" textAlign="center">
             {country.data.name}
           </CustomizedTypography>
         </CardContent>

@@ -11,7 +11,7 @@ import {
   CountryPageHeading,
   CountryPageMainContentContainer,
   CountryPageMainStats,
-  CountryPageMainSupplimentaryInfoContainer,
+  CountryPageMainSupplementaryInfoContainer,
   CountryPageStatsSpan,
   CountryPageStatsTypography,
   CustomizedCardMedia,
@@ -53,8 +53,10 @@ export const CountryPage = () => {
           <CloseIcon fontSize="inherit" />
         </IconButton>
       </Box>
-      <CountryPageHeading variant="h1">{country.name}</CountryPageHeading>
-      <CountryPageMainSupplimentaryInfoContainer>
+      <CountryPageHeading variant="h1" textAlign={'center'}>
+        {country.name}
+      </CountryPageHeading>
+      <CountryPageMainSupplementaryInfoContainer>
         <CountryPageMainStats>
           <CountryPageStatsTypography variant="body1">
             <CountryPageStatsSpan>Region</CountryPageStatsSpan>:{' '}
@@ -78,23 +80,25 @@ export const CountryPage = () => {
           </CountryPageStatsTypography>
         </CountryPageMainStats>
         <CustomizedCardMedia image={GEOQUIZ_SVG_PATH(country.flag)} />
-      </CountryPageMainSupplimentaryInfoContainer>
+      </CountryPageMainSupplementaryInfoContainer>
       <CountryPageMainContentContainer>
-        <Typography variant="body1" fontSize="1.8rem">
+        <Typography variant="body1" fontSize="1.8rem" textAlign={'center'}>
           {country.description}
         </Typography>
       </CountryPageMainContentContainer>
-      <Button
-        size="large"
-        variant="contained"
-        target="__blank"
-        rel="noopener"
-        href={country.wikiLink}
-        color="secondary"
-        sx={{ marginTop: '2rem' }}
-      >
-        READ WIKI ARTICLE
-      </Button>
+      <Box textAlign={'center'}>
+        <Button
+          size="large"
+          variant="contained"
+          target="__blank"
+          rel="noopener"
+          href={country.wikiLink}
+          color="secondary"
+          sx={{ marginTop: '2rem' }}
+        >
+          READ WIKI ARTICLE
+        </Button>
+      </Box>
     </GenericPageLayout>
   );
 };

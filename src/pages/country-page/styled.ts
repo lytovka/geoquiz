@@ -7,7 +7,7 @@ export const CountryPageHeading = styled(Typography)`
   font-size: 2.8rem;
 `;
 
-export const CountryPageMainSupplimentaryInfoContainer = styled(Grid)`
+export const CountryPageMainSupplementaryInfoContainer = styled(Grid)`
   display: grid;
   align-items: center;
   justify-content: center;
