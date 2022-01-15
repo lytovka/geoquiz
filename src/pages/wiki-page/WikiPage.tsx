@@ -17,9 +17,7 @@ export const WikiPage = () => {
   const loadingRef = useRef(null);
 
   // local states
-  const [countries, setCountries] = useState<Array<ICountryLookup> | null>(
-    null
-  );
+  const [countries, setCountries] = useState<Array<ICountryLookup>>([]);
   const [searchEntry, setSearchEntry] = useState<string | undefined>('');
   const [pageNumber, setPageNumber] = useState(1);
   const [isFullyLoaded, setIsFullyLoaded] = useState(false);
