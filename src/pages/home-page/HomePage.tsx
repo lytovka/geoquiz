@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Box, Button, Grid, Link as MaterialLink } from '@mui/material';
 import { GenericPageLayout } from 'layouts';
 import { KeyboardArrowRight } from '@mui/icons-material';
@@ -15,6 +15,8 @@ import {
 } from './styled';
 
 export const HomePage = () => {
+  const navigate = useNavigate();
+
   return (
     <GenericPageLayout>
       <HomePageContainer
@@ -30,14 +32,22 @@ export const HomePage = () => {
           </HomePageHeading>
           <Box display="flex" gap={3} justifyContent="center">
             <Button
-              href={QUIZ_SETUP_ROUTE}
+              onClick={() => {
+                navigate(QUIZ_SETUP_ROUTE);
+              }}
               endIcon={<KeyboardArrowRight />}
               variant="contained"
               color="secondary"
             >
               Take a Quiz
             </Button>
-            <Button href={WIKI_ROUTE} variant="contained" color="primary">
+            <Button
+              onClick={() => {
+                navigate(WIKI_ROUTE);
+              }}
+              variant="contained"
+              color="primary"
+            >
               Read the Wiki
             </Button>
           </Box>

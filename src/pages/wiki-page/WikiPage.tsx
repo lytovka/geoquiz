@@ -28,11 +28,13 @@ export const WikiPage = () => {
   const isLoadingRefOnScreen = useRefInFrame(loadingRef);
   const debouncedSearchTerm = useDebounce(searchEntry ?? '', 500);
 
-  const FILTERED_COUNTRIES = countries?.filter((country) =>
-    country.data.name
-      .toLocaleLowerCase()
-      .includes(debouncedSearchTerm.toLocaleLowerCase())
-  );
+  const FILTERED_COUNTRIES =
+    countries &&
+    countries.filter((country) =>
+      country.data.name
+        .toLocaleLowerCase()
+        .includes(debouncedSearchTerm.toLocaleLowerCase())
+    );
 
   // debounced wiki search
   useEffect(() => {
