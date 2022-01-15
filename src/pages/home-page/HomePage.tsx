@@ -49,11 +49,7 @@ export const HomePage = () => {
           />
         </Grid>
       </HomePageContainer>
-      <HomePageBottomContainer
-        display="flex"
-        justifyContent="center"
-        className="bottomCenter"
-      >
+      <HomePageBottomContainer>
         <MaterialLink
           fontSize="1.8rem"
           color="common.black"

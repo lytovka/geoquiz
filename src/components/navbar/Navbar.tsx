@@ -2,7 +2,7 @@ import { Box, Button, Link } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { HOMEPAGE_ROUTE, QUIZ_SETUP_ROUTE, WIKI_ROUTE } from 'constants/routes';
-import { CustomAppBar, CustomToolbar } from './styled';
+import { CustomAppBar, CustomToolbar, MenuItems } from './styled';
 import { useEffect, useState } from 'react';
 
 export const Navbar = () => {
@@ -16,9 +16,7 @@ export const Navbar = () => {
   return (
     <Box>
       <CustomAppBar position="static">
-        <CustomToolbar
-          sx={{ justifyContent: 'space-between', alignContent: 'center' }}
-        >
+        <CustomToolbar>
           <Box display="flex">
             <Link
               fontSize="1.8rem"
@@ -31,7 +29,7 @@ export const Navbar = () => {
               GEOQUIZ
             </Link>
           </Box>
-          <Box display="flex" columnGap={4}>
+          <MenuItems>
             <Link
               fontSize="1.5rem"
               color="secondary"
@@ -63,7 +61,7 @@ export const Navbar = () => {
             >
               {isAuthenticated ? 'Log Out' : 'Log In'}
             </Button>
-          </Box>
+          </MenuItems>
         </CustomToolbar>
       </CustomAppBar>
     </Box>
