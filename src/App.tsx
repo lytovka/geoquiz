@@ -1,4 +1,3 @@
-import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import { CountryPage, HomePage, QuizSetupPage, WikiPage } from 'pages';
 import {
@@ -12,7 +11,7 @@ import { QuizSessionPage } from 'pages/quiz-session-page';
 
 const App = () => {
   return (
-    <div className="App">
+    <div className="App" data-testid="app-test">
       <Routes>
         <Route path={HOMEPAGE_ROUTE} element={<HomePage />} />
         <Route path={WIKI_ROUTE} element={<WikiPage />} />

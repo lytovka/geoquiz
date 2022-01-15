@@ -16,14 +16,7 @@ export default defineConfig({
   preview: {
     port: 4000,
   },
-  plugins: [
-    react({
-      babel: {
-        presets: ['@babel/preset-react'],
-      },
-    }),
-    envCompatible(),
-  ],
+  plugins: [react(), envCompatible()],
   resolve: {
     alias: [
       {
